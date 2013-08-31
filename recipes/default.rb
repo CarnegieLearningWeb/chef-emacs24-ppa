@@ -7,11 +7,11 @@ apt_repository "emacs24-ppa" do
 end
 
 if node['emacs24-ppa']['use_snapshot']
-  packages = ["emacs-snapshot-el", "emacs-snapshot-gtk", "emacs-snapshot"]
+  package "emacs-snapshot-el"
+  package "emacs-snapshot-gtk"
+  package "emacs-snapshot"
 else
-  packages = ["emacs24", "emacs24-el", "emacs24-common-non-dfsg"]
-end
-
-packages.each do |pkgname|
-  package(pkgname) { action :install }
+  package "emacs24"
+  package "emacs24-el"
+  package "emacs24-common-non-dfsg"
 end
